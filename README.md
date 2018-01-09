@@ -14,5 +14,5 @@ This is a simple script that crawls through a file looking for file paths to png
 These scripts were part of a system to add the currently playing song on spotify to a playlist. Add_track.py uses the spotify web api to accomplish this, which requires authentication. myauth.py handles the one-time authorization by running a simple Bottle server to listen for the auth services callback
 
 Requires:
-  - [Bottle] (https://bottlepy.org/docs/dev/)
-  - [Spotipy] (https://spotipy.readthedocs.io/en/latest/)
+  - [Bottle](https://bottlepy.org/docs/dev/)
+  - [Spotipy](https://spotipy.readthedocs.io/en/latest/)
