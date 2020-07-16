@@ -1,13 +1,26 @@
 import sys
+import os.path
+sys.path.insert(0, os.path.expanduser("~/.local/lib/python3.6/site-packages"))
 import myauth
+import json
 import spotipy
 
-scope = 'playlist-modify-private'
+scope = 'playlist-modify-private user-read-playback-state'
 username = '1215249205'
 exploreSONGS = '5qRm1EuT2P4hbKxu3eCI26'
-test ='22c2pt75xtnDddA5Zlm0yy'
 
-def do_the_add(track_id):
-    print(spotipy.Spotify(myauth.get_authoriziation(scope)).user_playlist_add_tracks(username, exploreSONGS, [track_id]))
+def do_the_add(client, track_id):
+    client.user_playlist_add_tracks(username, exploreSONGS, [track_id])
 
-do_the_add(sys.argv[1])
+def get_current_track(client):
+    data = client.current_playback()
+    if data is not None:
+        return data['item']['uri'].split(':')[2]
+    else:
+        exit
+
+def get_client():
+    return spotipy.Spotify(myauth.get_authoriziation(scope))
+
+client = get_client()
+do_the_add(client, get_current_track(client))
